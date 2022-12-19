@@ -4,8 +4,10 @@ import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
   // document.getElementById('~~').addEventListner(); => 명령식 방식
+  let title = props.title;
+
   const clickHandler = () => {
-    console.log('클릭했니');
+    title = 'updated';
   };
 
   return (
