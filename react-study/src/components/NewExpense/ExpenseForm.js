@@ -30,9 +30,12 @@ const NewExpenseForm = () => {
 
   const dateChangeHandler = (event) => {
     //setEnteredDate(event.target.value);
-    setUserInput({
-      ...userInput,
-      date: event.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   date: event.target.value,
+    // });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value };
     });
   };
 
