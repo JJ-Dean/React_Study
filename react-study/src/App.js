@@ -8,7 +8,7 @@ const DUMMY_EXPENSES = [
     id: 'e1',
     title: '냄비 세트',
     amount: 121000,
-    date: new Date(2019, 5, 10),
+    date: new Date(2020, 5, 10),
   },
   { id: 'e2', title: '모니터', amount: 434000, date: new Date(2020, 5, 12) },
   {
