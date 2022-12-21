@@ -25,14 +25,16 @@ const Expense = (props) => {
           selected={filterdYear}
           onSaveYearData={saveYearDataHandler}
         />
-        {props.categories.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {props.categories
+          .map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))
+          .filter((x) => x.props.date.getFullYear() == filterdYear)}
       </Card>
     </div>
   );
