@@ -22,19 +22,6 @@ const Expense = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  // JSX 코드 안에 조건문을 작성하고 싶으면 이렇게 작성한다.
-  // {filteredExpenses.length === 0 ? (
-  //   <p>해당 년도의 정보가 없습니다.</p>
-  // ) : (
-  //   filteredExpenses.map((expense) => (
-  //     <ExpenseItem
-  //       key={expense.id}
-  //       title={expense.title}
-  //       amount={expense.amount}
-  //       date={expense.date}
-  //     />
-  //   ))
-  // )}
   let expensesContent = <p>해당 년도의 정보가 없습니다.</p>;
 
   if (filteredExpenses.length > 0) {
