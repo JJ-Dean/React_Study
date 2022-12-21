@@ -8,6 +8,10 @@ import './Expense.css';
 
 const Expense = (props) => {
   const expenses = props.categories;
+  // document.getElementById('~~').addEventListner(); => 명령식 방식
+  // [바뀔 값, 바꿀 수 있는 함수]
+  // 값이 바뀌지만 const로 정의해도 되는 이유
+  //  => '='처럼 등호 연사자로 새로운 값을 할당하는게 아니라 setTitle 이라는 함수로 변경을 예약하는 방식이기 때문에 const로 정의해도 상관 없다.
   const [filterdYear, setFilteredYear] = useState('2021');
 
   const saveYearDataHandler = (selectedYear) => {
