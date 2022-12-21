@@ -21,7 +21,7 @@ const DUMMY_EXPENSES = [
     id: 'e4',
     title: '책상 (나무)',
     amount: 230000,
-    date: new Date(2022, 12, 12),
+    date: new Date(2022, 11, 12),
   },
 ];
 
