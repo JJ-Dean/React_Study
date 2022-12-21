@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-import ExpensesFilter from '../NewExpense/ExpensesFilter';
 import Card from '../UI/Card';
-import ExpenseItem from './ExpenseItem';
-
+import ExpensesList from './ExpensesList';
+import ExpensesFilter from '../NewExpense/ExpensesFilter';
 import './Expense.css';
 
 const Expense = (props) => {
@@ -22,29 +21,16 @@ const Expense = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  let expensesContent = <p>해당 년도의 정보가 없습니다.</p>;
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
-
   return (
-    <div>
+    <li>
       <Card className="expenses">
         <ExpensesFilter
           selected={filteredYear}
           onSaveYearData={saveYearDataHandler}
         />
-        {expensesContent}
+        <ExpensesList items={filteredExpenses} />
       </Card>
-    </div>
+    </li>
   );
 };
 
