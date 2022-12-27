@@ -3,6 +3,7 @@ import React from 'react';
 import Card from '../UI/Card';
 
 import styled from 'styled-components';
+import Button from '../UI/Button';
 
 const FormContrl = styled(Card)`
   margin: 2rem auto;
@@ -43,7 +44,7 @@ const AddUser = (props) => {
         <input id="username" type="text" />
         <label htmlFor="age">나이</label>
         <input id="age" type="number" />
-        <button type="submit">유저 추가</button>
+        <Button type="submit">유저 추가</Button>
       </form>
     </FormContrl>
   );
