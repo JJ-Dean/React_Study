@@ -2,23 +2,69 @@ import React from 'react';
 
 import Card from './Card';
 import Button from './Button';
-import classes from './ErrorModal.module.css';
+import styled from 'styled-components';
+
+const StyledErrorModal = styled(Card)`
+  position: fixed;
+  top: 30vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+
+  & .header {
+    background: #4f005f;
+    padding: 1rem;
+  }
+
+  & .header h2 {
+    margin: 0;
+    color: white;
+  }
+
+  & .content {
+    padding: 1rem;
+  }
+
+  & .actions {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 768px) {
+    & {
+      left: calc(50% - 20rem);
+      width: 40rem;
+    }
+  }
+`;
+
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+`;
 
 const ErrorModal = (props) => {
   return (
     <div>
-      <div className={classes.backdrop} onClick={props.onConfirm} />
-      <Card className={classes.modal}>
-        <header className={classes.header}>
+      <Backdrop onClick={props.onConfirm} />
+      <StyledErrorModal>
+        <header className="header">
           <h2>{props.title}</h2>
         </header>
-        <div className={classes.content}>
+        <div className="content">
           <p>{props.message}</p>
         </div>
-        <footer className={classes.actions}>
-          <Button onClick={props.onConfirm}>Okay</Button>
+        <footer className="actions">
+          <Button onClick={props.onConfirm}>닫기</Button>
         </footer>
-      </Card>
+      </StyledErrorModal>
     </div>
   );
 };
