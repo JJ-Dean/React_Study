@@ -3,6 +3,7 @@ import React from 'react';
 import Card from './Card';
 import Button from './Button';
 import styled from 'styled-components';
+import Wrapper from '../Helpers/Wrapper';
 
 const StyledErrorModal = styled(Card)`
   position: fixed;
@@ -52,7 +53,7 @@ const Backdrop = styled.div`
 
 const ErrorModal = (props) => {
   return (
-    <div>
+    <Wrapper>
       <Backdrop onClick={props.onConfirm} />
       <StyledErrorModal>
         <header className="header">
@@ -65,7 +66,7 @@ const ErrorModal = (props) => {
           <Button onClick={props.onConfirm}>닫기</Button>
         </footer>
       </StyledErrorModal>
-    </div>
+    </Wrapper>
   );
 };
 
