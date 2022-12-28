@@ -4,6 +4,7 @@ import Card from '../UI/Card';
 
 import styled from 'styled-components';
 import Button from '../UI/Button';
+import ErrorModal from '../UI/ErrorModal';
 
 const FormContrl = styled(Card)`
   margin: 2rem auto;
@@ -35,13 +36,22 @@ const FormContrl = styled(Card)`
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      setError({
+        title: '유효하지 않은 입력',
+        message: '이름과 나이를 필수로 작성해주세요.',
+      });
       return;
     }
     if (+enteredAge < 1) {
+      setError({
+        title: '유효하지 않은 나이 입력',
+        message: '나이에 1보다 큰 값을 작성해주세요.',
+      });
       return;
     }
     props.onAddUser(enteredUsername, enteredAge);
@@ -57,26 +67,39 @@ const AddUser = (props) => {
     setEnteredAge(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
-    <FormContrl>
-      <form onSubmit={addUserHandler}>
-        <label htmlFor="username">이름</label>
-        <input
-          id="username"
-          type="text"
-          value={enteredUsername}
-          onChange={usernameChangeHandler}
+    <div>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
         />
-        <label htmlFor="age">나이</label>
-        <input
-          id="age"
-          type="number"
-          value={enteredAge}
-          onChange={AgeChangeHandler}
-        />
-        <Button type="submit">유저 추가</Button>
-      </form>
-    </FormContrl>
+      )}
+      <FormContrl>
+        <form onSubmit={addUserHandler}>
+          <label htmlFor="username">이름</label>
+          <input
+            id="username"
+            type="text"
+            value={enteredUsername}
+            onChange={usernameChangeHandler}
+          />
+          <label htmlFor="age">나이</label>
+          <input
+            id="age"
+            type="number"
+            value={enteredAge}
+            onChange={AgeChangeHandler}
+          />
+          <Button type="submit">유저 추가</Button>
+        </form>
+      </FormContrl>
+    </div>
   );
 };
 
