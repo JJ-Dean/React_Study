@@ -5,7 +5,6 @@ import Card from '../UI/Card';
 import styled from 'styled-components';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
-import Wrapper from '../Helpers/Wrapper';
 
 const FormContrl = styled(Card)`
   margin: 2rem auto;
@@ -73,7 +72,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <Wrapper>
+    <React.Fragment>
       {error && (
         <ErrorModal
           title={error.title}
@@ -100,7 +99,7 @@ const AddUser = (props) => {
           <Button type="submit">유저 추가</Button>
         </form>
       </FormContrl>
-    </Wrapper>
+    </React.Fragment>
   );
 };
 

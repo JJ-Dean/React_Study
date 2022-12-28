@@ -4,16 +4,16 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   font: inherit;
-  border: 1px solid #4f005f;
-  background: #4f005f;
+  border: 1px solid #ff8c69;
+  background: #ff8c69;
   color: white;
   padding: 0.25rem 1rem;
   cursor: pointer;
 
   &:hover,
   &:active {
-    background: #741188;
-    border-color: #741188;
+    background: #ff4500;
+    border-color: #ff4500;
   }
 
   &:focus {
