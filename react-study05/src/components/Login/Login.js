@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -11,20 +11,42 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(() => {
+    console.log('useEffect!!!!!');
+
+    return () => {
+      console.log('returnreturn');
+    };
+  }, []); // 의존성 배열이 비어있다면 [] => return은 컴포넌트가 DOM에서 제거될 때 실행된다.
+
+  // useEffect 사용법
+  // useEffect(() => {
+  //   setFormIsValid(
+  //     enteredEmail.includes('@') && enteredPassword.trim().length > 6
+  //   );
+  // }, [enteredEmail, enteredPassword]);
+
+  // useEffect clean up 함수 적용
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('입력값 체크!');
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );
+    }, 1000);
+
+    return () => {
+      console.log('이전 timeout 삭제');
+      clearTimeout(identifier);
+    };
+  }, [enteredEmail, enteredPassword]);
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
-
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@')
-    );
   };
 
   const validateEmailHandler = () => {
